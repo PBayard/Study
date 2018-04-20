@@ -1,0 +1,105 @@
+import os
+***********************************************************************************************************************
+os.getcwd()                     : current working directory
+os.chdir('C:\\Windows\\System32')
+os.path.join('usr', 'bin', 'spam') >>> 'usr\\bin\\spam' : will always create the path according to the OS
+os.makedirs(r'C:\delicious\walnut\waffles') : make directories
+os.path.abspath(path)           : absolute path (absolute always begin with root folder) ex. os.path.abspath('.')
+os.path.isabs(path)             : is absolute path?
+os.path.relpath(path, start)    : string of a relative path from the start path to path, if start omitted : current working directory (. = this directory, .. = parent)
+ex.
+>>> path = 'C:\\Windows\\System32\\calc.exe'
+>>> os.path.basename(path)
+'calc.exe'
+>>> os.path.dirname(path)
+'C:\\Windows\\System32'
+>>> calcFilePath.split(os.path.sep) : sep variable is set to correct OS folder separating slash
+['C:', 'Windows', 'System32', 'calc.exe']
+os.path.getsize
+os.listdir
+os.path.exists(path)
+os.path.isfile(path)
+os.path.isdir(path)
+
+for folderName, subfolders, filenames in os.walk('/home/pat/Documents/'):
+os.unlink(filename)
+os.rmdir(path)
+
+import sys
+***********************************************************************************************************************
+sys.path        # works like a list, ex.
+sys.path[6]
+len(sys.path)
+del sys.path[9]
+sys.path.append("C:\\Users\\Patrick\\Documents\\Dropbox\\Info\\PC\\Python\\PycharmProjects\\Study\\")
+
+import shutil
+************************************************************************************************************************
+shutil.copy("/home/pat/Documents/utilit/Temp/test.txt", "/home/pat/Documents/utilit/Temp/test/")
+shutil.copy("eggs.txt", "/home/pat/Documents/utilit/Temp/test/eggs2.txt")  # Casse important. Overwrite without problem
+shutil.copytree('/home/pat/Documents/utilit/Temp/', '/home/pat/Documents/utilit/test/')  # whole, no overwrite
+shutil.move('C:\\bacon.txt', 'C:\\eggs')
+shutil.move('C:\\bacon.txt', 'C:\\eggs\\new_bacon.txt')
+shutil.move('C:\\bacon.txt', 'C:\\eggs')  # = rename
+
+import getpass
+***********************************************************************************************************************
+suser = (str.upper(getpass.getuser()))
+suser = str.upper("XRossinyol")
+
+import pyodbc
+***********************************************************************************************************************
+cnxn = pyodbc.connect('DRIVER={SQL Server};SERVER=AWEU1ORHYDB01Q.gtc.gg.group;DATABASE=ExcelProjects;UID=Macros;PWD=Macros')
+cursor = cnxn.cursor()
+cmd = "Select * from [ExcelProjects].[dbo].[vExpense] where upper(samAccountName) = upper('" + suser + "')"
+
+import pandas as pd
+***********************************************************************************************************************
+df = pd.read_sql(cmd, cnxn)
+
+import time, datetime, subprocess, thread
+************************************************************************************************************************
+time.time() (cProfile.run() for in depth code profiling)
+time.sleep()
+datetime.datetime.now() # > < =! works with it
+
+strftime()
+directive Meaning
+%Y Year with century, as in '2014'
+%y Year without century, '00' to '99' (1970 to 2069)
+%m Month as a decimal number, '01' to '12'
+%B Full month name, as in 'November'
+%b Abbreviated month name, as in 'Nov'
+%d Day of the month, '01' to '31'
+%j Day of the year, '001' to '366'
+%w Day of the week, '0' (Sunday) to '6' (Saturday)
+%A Full weekday name, as in 'Monday'
+%a Abbreviated weekday name, as in 'Mon'
+%H Hour (24-hour clock), '00' to '23'
+%I Hour (12-hour clock), '01' to '12'
+%M Minute, '00' to '59'
+%S Second, '00' to '59'
+%p 'AM' or 'PM'
+%% Literal '%' character
+
+import threading
+******************************************************************************************
+threadObj = threading.Thread(target=print, args=['Cats', 'Dogs', 'Frogs'], kwargs={'sep': ' & '})
+threadObj.start()
+
+import subprocess
+******************************************************************************************
+
+import textblob import TextBlob
+******************************************************************************************
+wiki = TextBlob("Python is a high-level, general-purpose programming language.")
+print(wiki.subjectivity, wiki.sentiment)
+print(wiki.tags)
+print(wiki.noun_phrases)
+
+testimonial = TextBlob("J'aime. Le chemin de Compostelle est absolument super")
+print(testimonial.sentiment)
+print(testimonial.sentiment.polarity)
+print(testimonial.detect_language())
+print(testimonial.translate(to='es'))
+print(wiki.translate(to='fr'))
